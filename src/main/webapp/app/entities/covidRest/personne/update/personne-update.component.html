@@ -1,0 +1,143 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-personne-heading"
+        data-cy="PersonneCreateUpdateHeading"
+        jhiTranslate="covidGatewayApp.covidRestPersonne.home.createOrEditLabel"
+      >
+        Create or edit a Personne
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="covidGatewayApp.covidRestPersonne.tests" for="field_tests">Tests</label>
+          <input type="number" class="form-control" name="tests" id="field_tests" data-cy="tests" formControlName="tests" />
+          <div *ngIf="editForm.get('tests')!.invalid && (editForm.get('tests')!.dirty || editForm.get('tests')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('tests')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('tests')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="covidGatewayApp.covidRestPersonne.importes" for="field_importes">Importes</label>
+          <input type="number" class="form-control" name="importes" id="field_importes" data-cy="importes" formControlName="importes" />
+          <div *ngIf="editForm.get('importes')!.invalid && (editForm.get('importes')!.dirty || editForm.get('importes')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('importes')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('importes')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="covidGatewayApp.covidRestPersonne.positifs" for="field_positifs">Positifs</label>
+          <input type="number" class="form-control" name="positifs" id="field_positifs" data-cy="positifs" formControlName="positifs" />
+          <div *ngIf="editForm.get('positifs')!.invalid && (editForm.get('positifs')!.dirty || editForm.get('positifs')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('positifs')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('positifs')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="covidGatewayApp.covidRestPersonne.deces" for="field_deces">Deces</label>
+          <input type="number" class="form-control" name="deces" id="field_deces" data-cy="deces" formControlName="deces" />
+          <div *ngIf="editForm.get('deces')!.invalid && (editForm.get('deces')!.dirty || editForm.get('deces')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('deces')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('deces')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="covidGatewayApp.covidRestPersonne.gueris" for="field_gueris">Gueris</label>
+          <input type="number" class="form-control" name="gueris" id="field_gueris" data-cy="gueris" formControlName="gueris" />
+          <div *ngIf="editForm.get('gueris')!.invalid && (editForm.get('gueris')!.dirty || editForm.get('gueris')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gueris')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('gueris')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="covidGatewayApp.covidRestPersonne.date" for="field_date">Date</label>
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+          <div *ngIf="editForm.get('date')!.invalid && (editForm.get('date')!.dirty || editForm.get('date')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('date')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
